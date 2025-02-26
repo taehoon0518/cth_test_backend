@@ -1,7 +1,10 @@
 package com.example.cth_test_backend.board.model;
 
+import com.example.cth_test_backend.comment.model.Comment;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.util.List;
 
 public class BoardDto {
     @Getter
@@ -31,6 +34,32 @@ public class BoardDto {
                     .title(board.getTitle())
                     .writer(board.getWriter())
                     .commentCount(board.getCommentCount())
+                    .build();
+        }
+    }
+    @Getter
+    @Builder
+    public static class ReadResponse {
+        private String title;
+        private String writer;
+        private List<CommentDto> comments;
+        public static ReadResponse from(Board board, List<CommentDto> comments) {
+            return ReadResponse.builder()
+                    .title(board.getTitle())
+                    .writer(board.getWriter())
+                    .comments(comments)
+                    .build();
+        }
+    }
+    @Builder
+    @Getter
+    public static class CommentDto {
+        private String content;
+        private String writer;
+        public static CommentDto from (Comment comment) {
+            return CommentDto.builder()
+                    .content(comment.getContent())
+                    .writer(comment.getWriter())
                     .build();
         }
     }
