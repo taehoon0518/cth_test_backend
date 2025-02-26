@@ -42,11 +42,13 @@ public class BoardDto {
     public static class ReadResponse {
         private String title;
         private String writer;
+        private String content;
         private List<CommentDto> comments;
         public static ReadResponse from(Board board, List<CommentDto> comments) {
             return ReadResponse.builder()
                     .title(board.getTitle())
                     .writer(board.getWriter())
+                    .content(board.getContent())
                     .comments(comments)
                     .build();
         }
