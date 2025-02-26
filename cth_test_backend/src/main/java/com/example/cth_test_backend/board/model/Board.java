@@ -22,10 +22,16 @@ public class Board {
     private String content;
     private String writer;
 
-    public Board(Long idx) {
-        this.idx = idx;
+    private int commentCount;
+
+    public void addComment() {
+        this.commentCount++;
     }
 
     @OneToMany(mappedBy = "board")
     private List<Comment> comments;
+
+    public Board(Long idx) {
+        this.idx = idx;
+    }
 }
