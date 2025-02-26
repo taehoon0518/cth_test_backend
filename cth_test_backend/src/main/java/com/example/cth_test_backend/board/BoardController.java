@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/board")
@@ -18,8 +19,8 @@ public class BoardController {
         return ResponseEntity.ok("게시물 등록 완료");
     }
     @GetMapping("list")
-    public ResponseEntity<List<BoardDto.ListResponse>> list(){
-        List<BoardDto.ListResponse> req = boardService.list();
+    public ResponseEntity<List<BoardDto.ListResponse>> list(int page, int size){
+        List<BoardDto.ListResponse> req = boardService.list(page, size);
         return ResponseEntity.ok(req);
     }
     @GetMapping("/{idx}")
