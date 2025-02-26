@@ -18,4 +18,20 @@ public class BoardDto {
                     .build();
         }
     }
+    @Getter
+    @Builder
+    public static class ListResponse {
+        private Long idx;
+        private String title;
+        private String writer;
+        private int commentCount;
+        public static ListResponse from(Board board) {
+            return ListResponse.builder()
+                    .idx(board.getIdx())
+                    .title(board.getTitle())
+                    .writer(board.getWriter())
+                    .commentCount(board.getCommentCount())
+                    .build();
+        }
+    }
 }

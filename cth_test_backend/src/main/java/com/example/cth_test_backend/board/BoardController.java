@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/board")
@@ -16,7 +18,8 @@ public class BoardController {
         return ResponseEntity.ok("게시물 등록 완료");
     }
     @GetMapping("list")
-    public String list(){
-        return "list";
+    public ResponseEntity<List<BoardDto.ListResponse>> list(){
+        List<BoardDto.ListResponse> req = boardService.list();
+        return ResponseEntity.ok(req);
     }
 }
