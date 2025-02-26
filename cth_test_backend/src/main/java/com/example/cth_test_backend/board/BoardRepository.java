@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.nio.CharBuffer;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
-    CharBuffer findByIdx(Long idx);
+
+    Board findByIdx(Long idx);
 }
