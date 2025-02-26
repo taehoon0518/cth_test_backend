@@ -1,31 +1,24 @@
-package com.example.cth_test_backend.board.model;
+package com.example.cth_test_backend.comment.model;
 
-import com.example.cth_test_backend.comment.model.Comment;
+import com.example.cth_test_backend.board.model.Board;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Entity
 @Getter
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
-    private String title;
     private String content;
     private String writer;
-
-    public Board(Long idx) {
-        this.idx = idx;
-    }
-
-    @OneToMany(mappedBy = "board")
-    private List<Comment> comments;
+    @ManyToOne
+    @JoinColumn(name = "board_idx")
+    private Board board;
 }
